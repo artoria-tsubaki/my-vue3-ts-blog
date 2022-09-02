@@ -4,9 +4,6 @@ import Nav from './components/Nav.vue'
 
 <template>
   <Nav></Nav>
-  <div class="test-div">
-    <span class="test-span"> Test Span </span>
-  </div>
   <router-view />
 </template>
 
