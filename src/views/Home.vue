@@ -1,14 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import Carousel from '../components/Carousel.vue'
+</script>
 
 <template>
-  <div class="home-page">
-    <h1>Home</h1>
-  </div>
+  <Carousel></Carousel>
 </template>
 
 <style scoped>
-.home-page {
-  margin-top: 64px;
-  height: 200vh;
-}
 </style>

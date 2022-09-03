@@ -1,6 +1,10 @@
 <template>
   <div class="nav" :class="state.isShowGithubIcon ? 'nav-green' : ''">
     <div class="nav-wrapper container" id="navContainer">
+      <!-- bars -->
+      <a href="#" class="sidenav-trigger" @click="showMobileNav">
+        <i class="iconfont icon-bars"></i>
+      </a>
       <!-- logo -->
       <div class="brand-logo">
         <a class="wave-effect" href="/">
@@ -46,6 +50,57 @@
           </a>
         </li>
       </ul>
+      <!-- mobile nav -->
+      <div class="mobile-nav" :style="{'transform' : state.isShowMobileNav ? 'translateX(0%)' : 'translateX(-105%)'}">
+        <div class="mobile-head">
+          <img class="logo-img" src="https://artoria-tsubaki.github.io/medias/logo.png" alt="logo">
+          <div class="logo-name">破羽残蝶</div>
+          <div class="logo-desc">
+            Never really desperate, only the lost of the soul.
+          </div>
+        </div>
+        <ul class="mobile-menu-list">
+          <li class="m-nav-item">
+            <a class="wave-effect" href="/">
+              <i class="iconfont icon-homefill"></i>
+              <span>首页</span>
+            </a>
+          </li>
+          <li class="m-nav-item">
+            <a class="wave-effect" href="/">
+              <i class="iconfont icon-tags"></i>
+              <span>标签</span>
+            </a>
+          </li>
+          <li class="m-nav-item">
+            <a class="wave-effect" href="/">
+              <i class="iconfont icon-bookmark"></i>
+              <span>分类</span>
+            </a>
+          </li>
+          <li class="m-nav-item">
+            <a class="wave-effect" href="/">
+              <i class="iconfont icon-archive"></i>
+              <span>归档</span>
+            </a>
+          </li>
+          <li class="m-nav-item">
+            <a class="wave-effect" href="/">
+              <i class="iconfont icon-user"></i>
+              <span>关于</span>
+            </a>
+          </li>
+          <li>
+            <div class="divider"></div>
+          </li>
+          <li>
+            <a href="https://github.com/artoria-tsubaki/artoria-tsubaki.github.io">
+              <i class="iconfont icon-github-fill"></i>
+              <b>Fork me</b>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
     <a
       href="https://github.com/artoria-tsubaki/artoria-tsubaki.github.io"
@@ -79,7 +134,13 @@ import { onMounted, reactive, ref } from 'vue'
 
 const state = reactive({
   isShowGithubIcon: false,
+  isShowMobileNav: false,
 })
+
+const showMobileNav = ():void => {
+  state.isShowMobileNav = true
+}
+
 
 onMounted(() => {
   window.onscroll = (): void => {
@@ -104,7 +165,7 @@ onMounted(() => {
   z-index: 19991001;
   &.nav-green {
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 7px 10px 0 rgb(0 0 0 / 12%);
-    background-color: #0f9d58;
+    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
   }
   .nav-wrapper {
     display: flex;
@@ -114,6 +175,7 @@ onMounted(() => {
     max-width: 1125px;
     margin: 0 auto;
     justify-content: space-between;
+    // logo
     .brand-logo {
       .wave-effect {
         display: inline-block;
@@ -129,6 +191,7 @@ onMounted(() => {
         }
       }
     }
+    // menu
     .nav-menu {
       list-style-type: none;
       display: flex;
@@ -142,7 +205,77 @@ onMounted(() => {
         }
       }
     }
+    // mobile nav
+    .mobile-nav {
+      z-index: 999;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: calc(100% + 60px);
+      padding-bottom: 60px;
+      width: 240px;
+      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 7px 10px 0 rgb(0 0 0 / 12%);
+      background-color: #fff;
+      transition: transform  .2s ease-in-out;
+      .mobile-head {
+        padding: 0 15px;
+        background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+        text-align: left;
+        .logo-img {
+          margin-top: 30px;
+          width: 75px;
+          height: 75px;
+          border-radius: 50%;
+        }
+        .logo-name {
+          margin-top: -30px;
+          padding-left: 10px;
+          font-size: 1.5rem;
+        }
+        .logo-desc {
+          margin-top: -10px;
+          padding-left: 10px;
+          padding-bottom: 10px;
+          font-size: 0.8rem;
+          line-height: 1.3rem;
+          color: #e3e3e3;
+        }
+      }
+      .mobile-menu-list {
+        margin: 0;
+        list-style-type: none;
+        li {
+          margin-left: -15px;
+          a {
+            display: inline-block;
+            display: flex;
+            height: 50px;
+            line-height: 50px;
+            color: #34495e;
+            padding: 0 32px;
+            font-size: 14px;
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.05);
+            }
+            .iconfont {
+              display: block;
+              width: 3.3rem;
+              text-align: left;
+              margin: 0 32px 0 0;
+              font-size: 18px;
+            }
+          }
+          .divider {
+            margin: 8px 0 0;
+            height: 1px;
+            background-color: #e0e0e0;
+          }
+        }
+      }
+    }
   }
+
+  // github icon show
   .github-corner {
     position: absolute;
     z-index: 10;
@@ -179,6 +312,27 @@ onMounted(() => {
     40%,
     80% {
       transform: rotate(10deg);
+    }
+  }
+
+  // media search
+  @media only screen and (max-width: 992px) {
+    .nav-wrapper {
+      width: 90%;
+    }
+
+    .nav-item {
+      display: none;
+    }
+
+    .github-corner {
+      display: none;
+    }
+  }
+
+  @media only screen and (min-width: 993px) {
+    .sidenav-trigger {
+      display: none;
     }
   }
 }

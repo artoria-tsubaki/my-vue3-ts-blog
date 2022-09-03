@@ -8,13 +8,22 @@
 
 body {
   // background-color: #fff;
-  background-color: rgba(156, 39, 176, 0.75);
+  font-family: 'Montserrat', sans-serif;
   font-size: 15px;
 }
 
-.nav a {
+// 处理 Chrome浏览器里 outline 出现的-webkit-focus-ring-color的属性
+button:focus {
+  outline: none !important;
+}
+
+.nav{
   color: #fff;
   font-size: 1rem;
+}
+
+.nav a{
+  color: inherit;
 }
 
 .nav span {
