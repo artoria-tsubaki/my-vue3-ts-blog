@@ -16,6 +16,9 @@
                 <Button icon="icon-xiangxiazhanhang">开始阅读</Button>
                 <Button icon="icon-github">GitHub</Button>
               </div>
+              <div class="cover-social-link">
+                <SocialLink></SocialLink>
+              </div>
             </template>
             <!-- 展示文章 -->
             <template v-if="index !== 0">
@@ -39,6 +42,7 @@
 <script setup lang='ts'>
 import { CarsouelItem } from '../types/index.d'
 import Button from './Button.vue'
+import SocialLink from './SocialLink.vue';
 import Typed from 'typed.js';
 import { onMounted } from 'vue';
 const carouselList: Array<CarsouelItem> = [
@@ -104,6 +108,13 @@ onMounted(() => {
         .cover-btns {
           position: relative;
           top: 10vh;
+          text-align: center;
+        }
+
+        .cover-social-link {
+          position: relative;
+          top: 23vh;
+          width: 100%;
           text-align: center;
         }
       }
