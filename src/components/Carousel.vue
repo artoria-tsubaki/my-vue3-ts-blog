@@ -1,9 +1,9 @@
 <template>
   <div class="carousel-container">
-    <el-carousel height="100vh" :pause-on-hover="false" :interval="7500" arrow="always" :autoplay="false">
+    <el-carousel height="100vh" :pause-on-hover="false" :interval="7500" arrow="always">
       <el-carousel-item v-for="(carsouelItem, index) in carouselList" :key="carsouelItem.index">
         <div class="carousel-item bg-cover" :style="{backgroundImage: `url(${carsouelItem.url})`}">
-          <div class="container">
+          <div class="carousel-content">
             <!-- 第一页不展示文章 单独处理 -->
             <template v-if="index === 0">
               <div class="brand">
@@ -61,8 +61,8 @@ const carouselList: Array<CarsouelItem> = [
 ]
 onMounted(() => {
   var options = {
-    strings: ['信じる心ヾ(๑╹◡╹)ﾉ"があなたの魔法〜'],
-    shuffle: true,
+    strings: ['相信的心◔.̮◔✧就是你的魔法❀', '信じる心ヾ(๑╹◡╹)ﾉ"があなたの魔法〜'],
+    // shuffle: true,
     typeSpeed: 100,
     backSpeed: 40,
     loop: true
@@ -86,7 +86,7 @@ onMounted(() => {
       display: flex;
       justify-content: center;
       align-content: center;
-      .container {
+      .carousel-content {
         color: #fff;
         z-index: 999;
         .title {

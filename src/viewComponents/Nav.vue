@@ -1,5 +1,5 @@
 <template>
-  <div class="nav" :class="state.isShowGithubIcon ? 'nav-green' : ''">
+  <div class="nav" :class="state.isShowGithubIcon ? 'nav-green bg-color' : ''">
     <div class="nav-wrapper container" id="navContainer">
       <!-- bars -->
       <a href="#" class="sidenav-trigger" @click="showMobileNav">
@@ -52,7 +52,7 @@
       </ul>
       <!-- mobile nav -->
       <div class="mobile-nav" :style="{'transform' : state.isShowMobileNav ? 'translateX(0%)' : 'translateX(-105%)'}">
-        <div class="mobile-head">
+        <div class="mobile-head bg-color">
           <img class="logo-img" src="https://artoria-tsubaki.github.io/medias/logo.png" alt="logo">
           <div class="logo-name">破羽残蝶</div>
           <div class="logo-desc">
@@ -165,14 +165,10 @@ onMounted(() => {
   z-index: 19991001;
   &.nav-green {
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 7px 10px 0 rgb(0 0 0 / 12%);
-    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
   }
   .nav-wrapper {
     display: flex;
     height: 100%;
-    // 媒体查询
-    width: 90%;
-    max-width: 1125px;
     margin: 0 auto;
     justify-content: space-between;
     // logo
@@ -219,7 +215,6 @@ onMounted(() => {
       transition: transform  .2s ease-in-out;
       .mobile-head {
         padding: 0 15px;
-        background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
         text-align: left;
         .logo-img {
           margin-top: 30px;
@@ -317,9 +312,6 @@ onMounted(() => {
 
   // media search
   @media only screen and (max-width: 992px) {
-    .nav-wrapper {
-      width: 90%;
-    }
 
     .nav-item {
       display: none;

@@ -1,16 +1,21 @@
 <template>
-  <a href="/" class="my-button">
+  <a href="/" class="my-button" :class="props.size">
     <i class="iconfont" :class="props.icon"></i>
     <slot></slot>
   </a>
 </template>
 
 <script setup lang='ts'>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 
 const props = defineProps({
-  icon: String
+  icon: String,
+  size: String,
+  background: String
 })
+
+const background = ref(props.background)
+
 </script>
 
 <style lang="less" scoped>
@@ -27,7 +32,18 @@ const props = defineProps({
     border-radius: 30px;
     box-shadow: none;
     text-transform: uppercase;
-    &:hover {
+
+    &.md {
+      padding: 0 16px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 0.9rem;
+      border: transparent;
+      border-radius: 20px;
+      background: v-bind(background);
+    }
+
+    &:not(.md):hover {
       background-color: #f44336;
       border-color: transparent;
       transition: all .3s ease-out;

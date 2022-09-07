@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Nav from './components/Nav.vue'
+import Nav from './viewComponents/Nav.vue'
 import Footer from './viewComponents/Footer.vue';
 </script>
 
@@ -12,12 +12,8 @@ import Footer from './viewComponents/Footer.vue';
 <style lang="less">
 #app {
   overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
 }
 @import url('./less/index.less');
-
-.test-div {
-  .test-span {
-    text-decoration: underline;
-  }
-}
 </style>

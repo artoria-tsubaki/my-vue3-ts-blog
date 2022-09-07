@@ -1,6 +1,6 @@
 <template>
   <footer class="page-footer bg-color">
-    <div class="container">
+    <div class="container footer-container">
       <div class="footer-left">
           <span class="copyright">Copyright © 2022 <a href="/about">破羽残蝶</a></span>
           <span class="pipe">|</span>
@@ -29,12 +29,10 @@ import SocialLink from '../components/SocialLink.vue';
 
 <style lang="less" scoped>
   .page-footer {
+    width: 100%;
     padding: 20px 0;
     color: #dbdbdb;
     background-color: #ee6e73;
-    &.bg-color {
-      background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
-    }
     .pipe {
       margin: 0 5px;
     }
@@ -42,9 +40,7 @@ import SocialLink from '../components/SocialLink.vue';
       color: #fff;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1125px;
+    .footer-container {
       display: flex;
       flex-direction: row;
       margin: 0 auto;
