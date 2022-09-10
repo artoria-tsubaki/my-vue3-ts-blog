@@ -51,13 +51,11 @@
         </li>
       </ul>
       <!-- mobile nav -->
-      <div class="mobile-nav" :style="{'transform' : state.isShowMobileNav ? 'translateX(0%)' : 'translateX(-105%)'}">
+      <div class="mobile-nav" :style="{ transform: state.isShowMobileNav ? 'translateX(0%)' : 'translateX(-105%)' }">
         <div class="mobile-head bg-color">
-          <img class="logo-img" src="https://artoria-tsubaki.github.io/medias/logo.png" alt="logo">
+          <img class="logo-img" src="https://artoria-tsubaki.github.io/medias/logo.png" alt="logo" />
           <div class="logo-name">破羽残蝶</div>
-          <div class="logo-desc">
-            Never really desperate, only the lost of the soul.
-          </div>
+          <div class="logo-desc">Never really desperate, only the lost of the soul.</div>
         </div>
         <ul class="mobile-menu-list">
           <li class="m-nav-item">
@@ -137,20 +135,19 @@ const state = reactive({
   isShowMobileNav: false,
 })
 
-const showMobileNav = ():void => {
+const showMobileNav = (): void => {
   state.isShowMobileNav = true
 }
 
-
-onMounted(() => {
-  window.onscroll = (): void => {
-    if (window.document.body.scrollTop > 100 || window.document.documentElement.scrollTop > 100) {
-      state.isShowGithubIcon = true
-    } else {
-      state.isShowGithubIcon = false
-    }
-  }
-})
+// onMounted(() => {
+//   window.onscroll = (): void => {
+//     if (window.document.body.scrollTop > 100 || window.document.documentElement.scrollTop > 100) {
+//       state.isShowGithubIcon = true
+//     } else {
+//       state.isShowGithubIcon = false
+//     }
+//   }
+// })
 </script>
 
 <style lang="less" scoped>
@@ -212,7 +209,7 @@ onMounted(() => {
       width: 240px;
       box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 7px 10px 0 rgb(0 0 0 / 12%);
       background-color: #fff;
-      transition: transform  .2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
       .mobile-head {
         padding: 0 15px;
         text-align: left;
@@ -312,7 +309,6 @@ onMounted(() => {
 
   // media search
   @media only screen and (max-width: 992px) {
-
     .nav-item {
       display: none;
     }

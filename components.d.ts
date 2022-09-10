@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ArrowUp: typeof import('./src/components/ArrowUp.vue')['default']
     Button: typeof import('./src/components/Button.vue')['default']
     Card: typeof import('./src/components/Card.vue')['default']
     Carousel: typeof import('./src/components/Carousel.vue')['default']
