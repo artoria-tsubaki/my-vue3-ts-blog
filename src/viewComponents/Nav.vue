@@ -1,5 +1,5 @@
 <template>
-  <div class="nav" :class="state.isShowGithubIcon ? 'nav-green bg-color' : ''">
+  <div class="nav" :class="isShowGithubNav ? 'nav-green bg-color' : ''">
     <div class="nav-wrapper container" id="navContainer">
       <!-- bars -->
       <a href="#" class="sidenav-trigger" @click="showMobileNav">
@@ -107,7 +107,7 @@
       data-tooltip="Fork Me"
       data-position="left"
       data-delay="50"
-      v-if="state.isShowGithubIcon"
+      v-if="isShowGithubNav"
     >
       <svg viewBox="0 0 250 250" aria-hidden="true">
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -130,24 +130,21 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 
+// props
+defineProps<{isShowGithubNav: boolean}>()
+
+// properties
 const state = reactive({
-  isShowGithubIcon: false,
   isShowMobileNav: false,
 })
 
+
+// functions
 const showMobileNav = (): void => {
   state.isShowMobileNav = true
 }
 
-// onMounted(() => {
-//   window.onscroll = (): void => {
-//     if (window.document.body.scrollTop > 100 || window.document.documentElement.scrollTop > 100) {
-//       state.isShowGithubIcon = true
-//     } else {
-//       state.isShowGithubIcon = false
-//     }
-//   }
-// })
+
 </script>
 
 <style lang="less" scoped>

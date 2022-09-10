@@ -1,34 +1,16 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
 
-const state = reactive({
-  isShowBtn: false,
-})
 
-// onMounted(() => {
-//   window.onscroll = (): void => {
-//     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-//       state.isShowBtn = true
-//     } else {
-//       state.isShowBtn = false
-//     }
-//   }
-// })
+defineProps<{show: boolean}>()
 
 const toTopFunction = (): void => {
-  document.body.scrollIntoView({
-    behavior: 'smooth',
-  })
-  document.documentElement.scrollIntoView({
-    behavior: 'smooth',
-  })
   document.body.scrollTop = 0
   document.documentElement.scrollTop = 0
 }
 </script>
 
 <template>
-  <div class="arrow-up" v-show="state.isShowBtn" @click="toTopFunction">
+  <div class="arrow-up" v-show="show" @click="toTopFunction">
     <i class="iconfont icon-arrow-up"></i>
   </div>
 </template>

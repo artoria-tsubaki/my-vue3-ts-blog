@@ -2,24 +2,32 @@
 import Nav from './viewComponents/Nav.vue'
 import Footer from './viewComponents/Footer.vue'
 import ArrowUp from './components/ArrowUp.vue'
-import { onMounted } from 'vue'
+import { onMounted, reactive } from 'vue'
+const state = reactive({
+  isShowArrowUpBtn: false,
+  isShowGithubNav: false
+})
+
+
 
 onMounted(() => {
   window.onscroll = (): void => {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      // state.isShowBtn = true
+    if (document.documentElement.scrollTop > 100 || document.body.scrollTop > 100) {
+      state.isShowArrowUpBtn = true
+      state.isShowGithubNav = true
     } else {
-      // state.isShowBtn = false
-    }
+      state.isShowArrowUpBtn = false
+      state.isShowGithubNav = false
+    }    
   }
 })
 </script>
 
 <template>
-  <Nav></Nav>
+  <Nav :isShowGithubNav="state.isShowGithubNav"></Nav>
   <router-view />
   <Footer></Footer>
-  <ArrowUp></ArrowUp>
+  <ArrowUp :show="state.isShowArrowUpBtn"></ArrowUp>
 </template>
 
 <style lang="less">

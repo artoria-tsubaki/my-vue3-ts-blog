@@ -8,6 +8,8 @@ import './assets/font/iconfont.css'
 
 import 'aos/dist/aos.css';
 
+import 'element-plus/es/components/message/style/css'
+
 const app = createApp(App)
   
 app.use(router)
