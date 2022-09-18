@@ -87,7 +87,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Carousel></Carousel>
+  <Carousel class="carousel"></Carousel>
   <Main>
     <div class="index-card">
       <div class="container">
@@ -145,6 +145,9 @@ onMounted(() => {
 </template>
 
 <style lang="less" scoped>
+.carousel {
+  margin-top: -64px;
+}
 .index-card {
   margin-top: -10px;
   padding-top: 20px;
