@@ -76,7 +76,7 @@ class MarkUtils {
     this.rendererMD.table = function (header: any, body: any) {
       return '<table class="table" border="0" cellspacing="0" cellpadding="0">' + header + body + '</table>'
     }
-    highlight.configure({ useBR: true });
+    // highlight.configure({ useBR: true });
     marked.setOptions({
       renderer: this.rendererMD,
       headerIds: false,
