@@ -7,3 +7,5 @@ declare module '*.vue' {
 }
 
 declare module 'aos'
+
+declare module 'marked'

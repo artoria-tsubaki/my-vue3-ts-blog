@@ -11,6 +11,8 @@
   "dependencies": {
     "aos": "^2.3.4",
     "element-plus": "^2.2.15",
+    "highlight.js": "^11.6.0",
+    "marked": "^4.1.0",
     "typed.js": "^2.0.12",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5"
