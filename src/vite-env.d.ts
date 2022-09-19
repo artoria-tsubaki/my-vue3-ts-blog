@@ -9,3 +9,4 @@ declare module '*.vue' {
 declare module 'aos'
 declare module 'marked'
 declare module 'axios'
+declare module 'path'
