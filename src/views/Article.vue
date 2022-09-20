@@ -1,11 +1,26 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, reactive } from 'vue'
 import service from '../utils/https'
+import markdown from '../utils/markdown'
 import Main from '../viewComponents/Main.vue'
+
+const state = reactive({
+  articleDetail: {
+    content: '',
+    toc: '',
+  },
+})
 
 onMounted(async () => {
   const data = await service.get('/')
   console.log(data)
+  const article = markdown.marked(data)
+  console.log(article)
+
+  article.then((res: any) => {
+    state.articleDetail.content = res.content
+    state.articleDetail.toc = res.toc
+  })
 })
 </script>
 
@@ -23,18 +38,44 @@ onMounted(async () => {
                   </div>
                 </el-col>
                 <el-col :span="10">
-                  <span class="post-cate">
+                  <div class="post-cate">
                     <i class="iconfont icon-bookmark"></i>
                     <a href="/">数据结构与算法</a>
-                  </span>
+                  </div>
                 </el-col>
               </el-row>
+              <div class="post-info">
+                <div class="publish-date">
+                  <i class="iconfont icon-daiban"></i>
+                  发布日期: 2020-07-17
+                </div>
+                <div class="update-date">
+                  <i class="iconfont icon-shijianjilu"></i>
+                  更新日期: 2020-07-17
+                </div>
+                <div class="article-total">
+                  <i class="iconfont icon-wenzhang"></i>
+                  文章字数: 2022
+                </div>
+                <div class="read-time">
+                  <i class="iconfont icon-time"></i>
+                  阅读时间: 2小时
+                </div>
+                <div class="read-count">
+                  <i class="iconfont icon-eye"></i>
+                  阅读次数: 114514
+                </div>
+              </div>
             </div>
-            <div class="card-content article-content"></div>
+            <div class="card-content article-content">
+              <div id="content" class="article-detail" v-html="state.articleDetail.content"></div>
+            </div>
           </div>
         </div>
       </el-col>
-      <el-col :xs="0" :sm="0" :md="6"> 456 </el-col>
+      <el-col :xs="0" :sm="0" :md="6">
+        <div class="article-right fr anchor" v-html="state.articleDetail.toc"></div>
+      </el-col>
     </el-row>
   </Main>
 </template>
@@ -49,12 +90,26 @@ onMounted(async () => {
     background-color: #fff;
     box-shadow: 0 10px 35px 2px rgb(0 0 0 / 15%), 0 5px 15px rgb(0 0 0 / 7%), 0 2px 5px -5px rgb(0 0 0 / 10%) !important;
     border-radius: 10px;
-
-    .post-cate {
-      a:hover {
-        color: @primary-a-hover-color;
-        text-decoration: underline;
+    .tag-cate {
+      padding: 20px 30px 1px 40px;
+      margin-bottom: 20px;
+      .article-tag {
+        text-align: left;
       }
+      .post-cate {
+        text-align: right;
+        a {
+          color: @primary-a-hover-color;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .post-info {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid #525f7f;
     }
   }
 }

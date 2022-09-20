@@ -6,11 +6,39 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "1433638",
+      "icon_id": "15838501",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "20269635",
+      "name": "事件记录",
+      "font_class": "shijianjilu",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "24163927",
+      "name": "待办",
+      "font_class": "daiban",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "2471395",
+      "name": "文章",
+      "font_class": "wenzhang",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "1898546",
       "name": "bars",
       "font_class": "bars",
-      "unicode": "e610",
-      "unicode_decimal": 58896
+      "unicode": "e61f",
+      "unicode_decimal": 58911
     },
     {
       "icon_id": "20284743",

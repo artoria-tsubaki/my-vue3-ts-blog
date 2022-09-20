@@ -1,6 +1,6 @@
 // https://www.cherylgood.cn/detail/5bdaf4722382b4646c27143b.html
 import highlight from 'highlight.js'
-import marked from 'marked'
+import { marked } from 'marked'
 // const highlight = require("highlight.js");
 // const marked = require("marked");
 const tocObj = {
