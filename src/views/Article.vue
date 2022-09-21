@@ -26,7 +26,7 @@ onMounted(async () => {
 
 <template>
   <Main>
-    <el-row>
+    <el-row v-show="state.articleDetail.content">
       <el-col :xs="24" :sm="24" :md="18">
         <div class="articleDetail">
           <div class="card">
@@ -68,7 +68,7 @@ onMounted(async () => {
               </div>
             </div>
             <div class="card-content article-content">
-              <div id="content" class="article-detail" v-html="state.articleDetail.content"></div>
+              <div id="articleContent" class="article-detail" v-html="state.articleDetail.content"></div>
             </div>
           </div>
         </div>
@@ -80,8 +80,9 @@ onMounted(async () => {
   </Main>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 @import url('@/less/variables.less');
+@import url('../less/article.less');
 .articleDetail {
   margin-top: -60px;
   .card {
@@ -109,7 +110,7 @@ onMounted(async () => {
     .post-info {
       display: flex;
       justify-content: space-around;
-      border-bottom: 1px solid #525f7f;
+      border-bottom: 1px solid #cccccc;
     }
   }
 }
