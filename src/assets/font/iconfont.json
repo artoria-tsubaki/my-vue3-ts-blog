@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2685589",
+      "name": "PC-menu",
+      "font_class": "PC-menu",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
       "icon_id": "15838501",
       "name": "menu",
       "font_class": "menu",

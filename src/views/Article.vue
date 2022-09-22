@@ -13,9 +13,7 @@ const state = reactive({
 
 onMounted(async () => {
   const data = await service.get('/')
-  console.log(data)
   const article = markdown.marked(data)
-  console.log(article)
 
   article.then((res: any) => {
     state.articleDetail.content = res.content
@@ -74,7 +72,7 @@ onMounted(async () => {
         </div>
       </el-col>
       <el-col :xs="0" :sm="0" :md="6">
-        <div class="article-right fr anchor" v-html="state.articleDetail.toc"></div>
+        <div class="article-right toc-fixed fr anchor" v-html="state.articleDetail.toc"></div>
       </el-col>
     </el-row>
   </Main>
@@ -111,6 +109,21 @@ onMounted(async () => {
       display: flex;
       justify-content: space-around;
       border-bottom: 1px solid #cccccc;
+    }
+  }
+}
+.article-right {
+  width: 345px;
+  padding-left: 40px;
+
+  .toc-title {
+    margin: 35px 0 15px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    .iconfont {
+      font-size: inherit;
+      margin-right: 10px;
     }
   }
 }
