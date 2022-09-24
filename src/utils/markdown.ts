@@ -22,15 +22,18 @@ const tocObj = {
     let result = "";
     // 添加 目录 的标识
     result += '<div class="toc-title"><i class="iconfont icon-PC-menu"></i>目录</div>'
-    const addStartUL = () => {
-      result += '<ul class="anchor-ul" id="anchor-fix">';
+    const addStartUL = (level: any) => {
+      result += `<ul class="anchor-ul ${level > 1 ? "secondary-ul-" + level : ""}" id="anchor-fix">`;
     };
     const addEndUL = () => {
       result += "</ul>\n";
     };
     const addLI = (anchor: any, text: any) => {
       result +=
-        '<li><a class="toc-link" href="#' + anchor + '">' + text + "<a></li>\n";
+        '<li><a class="toc-link" href="#' + anchor + '">' + text + "<a>";
+    };
+    const addEndLI = () => {
+      result += "</li>\n";
     };
 
     this.toc.forEach(function (item: any) {
@@ -38,11 +41,20 @@ const tocObj = {
       // 没有找到相应level的ul标签，则将li放入新增的ul中
       if (levelIndex === -1) {
         levelStack.unshift(item.level);
-        addStartUL();
-        addLI(item.anchor, item.text);
+        if (item.level > 2) {
+          // 将子菜单放到父级菜单的li下边
+          addLI(item.anchor, item.text);
+          addStartUL(item.level);
+          addEndLI()
+        } else {
+          addStartUL(item.level);
+          addLI(item.anchor, item.text);
+          addEndLI()
+        }
       } // 找到了相应level的ul标签，并且在栈顶的位置则直接将li放在此ul下
       else if (levelIndex === 0) {
         addLI(item.anchor, item.text);
+        addEndLI()
       } // 找到了相应level的ul标签，但是不在栈顶位置，需要将之前的所有level出栈并且打上闭合标签，最后新增li
       else {
         while (levelIndex--) {
@@ -50,6 +62,7 @@ const tocObj = {
           addEndUL();
         }
         addLI(item.anchor, item.text);
+        addEndLI()
       }
     });
     // 如果栈中还有level，全部出栈打上闭合标签
@@ -72,7 +85,6 @@ class MarkUtils {
   constructor() {
     this.rendererMD = new marked.Renderer() as any;
     this.rendererMD.heading = function (text: any, level: any, raw: any) {
-      console.log(text, level);
       
       var anchor = tocObj.add(text, level);
       return `<h${level} id=${anchor}>${text}</h${level}>\n`;

@@ -72,7 +72,7 @@ onMounted(async () => {
         </div>
       </el-col>
       <el-col :xs="0" :sm="0" :md="6">
-        <div class="article-right toc-fixed fr anchor" v-html="state.articleDetail.toc"></div>
+        <div class="article-right fr anchor" v-html="state.articleDetail.toc"></div>
       </el-col>
     </el-row>
   </Main>

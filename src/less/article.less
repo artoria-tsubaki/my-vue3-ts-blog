@@ -67,6 +67,18 @@ width: 100%;
   overflow: auto;
 }
 
+#articleContent h1::before,
+#articleContent h2::before,
+#articleContent h3::before,
+#articleContent h4::before,
+#articleContent h5::before {
+  display: block;
+  content: " ";
+  height: 100px;
+  margin-top: -100px;
+  visibility: hidden;
+}
+
 /**
 #articleContent table,
 th,
@@ -320,3 +332,12 @@ p {
 #toc-content .is-active-link {
   color: #42b983;
 }
+
+.xkd(@n, @i: 3) when (@i =< @n) {
+  .secondary-ul-@{i} {
+    padding-left: 15px;
+  }
+  .xkd(@n, (@i + 1));
+}
+
+.xkd(6);
