@@ -214,6 +214,7 @@ onMounted(() => {
           background-size: cover;
           display: flex;
           flex-direction: column;
+          text-align: center;
 
           &::before {
             content: '';

@@ -87,7 +87,7 @@ class MarkUtils {
     this.rendererMD.heading = function (text: any, level: any, raw: any) {
       
       var anchor = tocObj.add(text, level);
-      return `<h${level} id=${anchor}>${text}</h${level}>\n`;
+      return `<h${level} class="toc-heading" id=${anchor}>${text}</h${level}>\n`;
     };
     this.rendererMD.table = function (header: any, body: any) {
       return '<table class="table" border="0" cellspacing="0" cellpadding="0">' + header + body + '</table>'

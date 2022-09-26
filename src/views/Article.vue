@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { nextTick, onMounted, reactive } from 'vue'
 import service from '../utils/https'
 import markdown from '../utils/markdown'
 import Main from '../viewComponents/Main.vue'
@@ -18,6 +18,27 @@ onMounted(async () => {
   article.then((res: any) => {
     state.articleDetail.content = res.content
     state.articleDetail.toc = res.toc
+
+    nextTick(() => {
+      const intersectionObserver = new IntersectionObserver((entries) => {
+        const entrie = entries[0]
+        if(!entrie.intersectionRatio) return false
+        console.log(entrie.target.getAttribute('id'));
+        const id = '#' + entrie.target.getAttribute('id');
+        [...document.getElementsByTagName('a') as any].filter(item =>item.classList.contains('toc-link')).forEach(a => {
+          a.classList.remove('active')
+          if(a.getAttribute('href') === id) {
+            a.classList.add('active')
+          }
+        })
+      }, {
+        threshold: [0.8]
+      })
+
+      Array.from(document.getElementsByClassName('toc-heading')).forEach((ele) => {
+        intersectionObserver.observe(ele)
+      })
+    })
   })
 })
 </script>
@@ -72,7 +93,7 @@ onMounted(async () => {
         </div>
       </el-col>
       <el-col :xs="0" :sm="0" :md="6">
-        <div class="article-right fr anchor" v-html="state.articleDetail.toc"></div>
+        <div class="article-right fr anchor" id="toc-content" v-html="state.articleDetail.toc"></div>
       </el-col>
     </el-row>
   </Main>
@@ -115,7 +136,8 @@ onMounted(async () => {
 .article-right {
   width: 345px;
   padding-left: 40px;
-
+  position: fixed;
+  top: 20px;
   .toc-title {
     margin: 35px 0 15px 0;
     font-size: 1.5rem;
