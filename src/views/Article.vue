@@ -20,20 +20,40 @@ onMounted(async () => {
     state.articleDetail.toc = res.toc
 
     nextTick(() => {
-      const intersectionObserver = new IntersectionObserver((entries) => {
-        const entrie = entries[0]
-        if(!entrie.intersectionRatio) return false
-        console.log(entrie.target.getAttribute('id'));
-        const id = '#' + entrie.target.getAttribute('id');
-        [...document.getElementsByTagName('a') as any].filter(item =>item.classList.contains('toc-link')).forEach(a => {
-          a.classList.remove('active')
-          if(a.getAttribute('href') === id) {
-            a.classList.add('active')
-          }
+      let before = document.documentElement.scrollTop
+      console.log('before:', before)
+
+      window.addEventListener('scroll', () => {
+        let after = document.documentElement.scrollTop
+        console.log('after:', after)
+        if (before < after) {
+          console.log('往下滚')
+        } else {
+          console.log('往上滚')
+        }
+        setTimeout(() => {
+          before = after
         })
-      }, {
-        threshold: [0.8]
       })
+      const intersectionObserver = new IntersectionObserver(
+        (entries) => {
+          const entrie = entries[0]
+          if (!entrie.intersectionRatio) return false
+          console.log(entrie.target.innerHTML, entrie.intersectionRatio)
+          // console.log(entrie.target.getAttribute('id'));
+          // const id = '#' + entrie.target.getAttribute('id');
+          // [...document.getElementsByTagName('a') as any].filter(item =>item.classList.contains('toc-link')).forEach(a => {
+          //   a.classList.remove('active')
+          //   if(a.getAttribute('href') === id) {
+          //     a.classList.add('active')
+          //   }
+          // })
+        },
+        {
+          rootMargin: '-5% 0px -90%',
+          threshold: [0, 1],
+        }
+      )
 
       Array.from(document.getElementsByClassName('toc-heading')).forEach((ele) => {
         intersectionObserver.observe(ele)

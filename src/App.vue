@@ -16,7 +16,17 @@ const state = reactive({
 
 onMounted(() => {
   // 监听滚轮事件
-  window.onscroll = (): void => {
+  // window.onscroll = (): void => {
+  //   if (document.documentElement.scrollTop > 100 || document.body.scrollTop > 100) {
+  //     state.isShowArrowUpBtn = true
+  //     state.isShowGithubNav = true
+  //   } else {
+  //     state.isShowArrowUpBtn = false
+  //     state.isShowGithubNav = false
+  //   }
+  // }
+
+  window.addEventListener('scroll', () => {
     if (document.documentElement.scrollTop > 100 || document.body.scrollTop > 100) {
       state.isShowArrowUpBtn = true
       state.isShowGithubNav = true
@@ -24,7 +34,7 @@ onMounted(() => {
       state.isShowArrowUpBtn = false
       state.isShowGithubNav = false
     }
-  }
+  })
 
   // 监听当前路由
   const route = useRouter()
